@@ -1,0 +1,397 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.woff') format('woff');
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Medium.woff') format('woff');
+    font-display: swap;
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Bold.woff') format('woff');
+    font-display: swap;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Задаем переменную в корень, чтобы работала на всём сайте */
+:root{
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* Отдельно нужно подкелючать шрифт для кнопок */
+body, button{
+    font-family: var(--font-family);
+    font-weight: 400;
+}
+
+img{
+    width: 100%;
+}
+
+.link{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 14px;
+    text-decoration: none;
+    color: #d4d6d4;
+}
+
+.link:hover{
+    color: #ffd723;
+}
+
+.link span{
+    display: inline-block;
+    /* отсутп в тексте, не работает без дисплей инлайн блок */
+    text-indent: 10px;
+    /* применяю бордеру текущий цвет текста */
+    border-bottom: 1px solid currentColor;
+}
+
+.link svg{
+    /* Задачем цвет свг */
+    fill: currentColor;
+    width: 10px;
+    height: 12px;
+}
+
+.hero-link{
+    color: #ffd723;
+}
+
+.header{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 25px;
+
+}
+
+.container{
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.burger{
+    /* Имитуирем паддинги для абсолютных значений
+    Задаем пермеенную, чтобы это значение всегда было одинаковым
+    Работает как в бургере, так и в его внутренностях - бурег-лайн */
+    --offset-horizontal: 11px;
+    --offset-vertical: 14px;
+    position: relative;
+    background-color: #f5f6f7;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    padding: var(--offset-vertical) var(--offset-horizontal);
+}
+
+.burger-line{
+    position: absolute;
+    background-color: #000;
+    top: var(--offset-vertical);
+    /* строчные элементы не понимают что такое высота и ширина, если не задайти display: inline-block */
+    display: inline-block;
+    /* Делаем расчет ширины, взяв 100% отсноительно бургера и отняв 2 раза по переменной, которая является паддингом */
+    width: calc(100% - (var(--offset-horizontal)*2));
+    height: 2px;
+    /* Центрируем объект в абсолюте по центру. ХЗ как работает, но работает */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Обращаемся ко второму элементу и рассчитываеи отсуп, учитывая паддинг переменной + длину самой палочки + отсутп между 1-й и 2-й */
+.burger-line:nth-child(2){
+    top: calc(var(--offset-vertical) + 6px);
+}
+
+.burger-line:nth-child(3){
+    top: calc(var(--offset-vertical) + 12px);
+}
+
+.container{
+    padding: 0 166px;
+}
+
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero{
+    /* Настройки изобрадения как бекраунда */
+    background-image: url(../img/hero/img-hero.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 189px;
+    width: 100%;
+}
+
+.hero-content{
+    padding-bottom: 220px;
+    max-width: 580px;
+}
+
+.hero-subtitle{
+    font-size: 14px;
+    line-height: 21px;
+    color: #fff;
+}
+
+.hero-title{
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 74px;
+    color: #fff;
+    margin: 22px 0 24px 0;
+}
+
+.hero-descr{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #fff;
+    margin-bottom: 45px;
+}
+
+
+
+
+/* SERVICES */
+.services{
+    padding: 140px 0 14px 0;
+}
+
+.site-title{
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 46px;
+    color: #4d533c;
+    max-width: 607px;
+    margin-bottom: 87px;
+}
+
+/* Разбиваем список на равные колонки с отступами */
+.services-list{
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.services-item{
+    padding: 27px 30px 36px 30px;
+    display: flex;
+    flex-direction: column;
+    /* flex column растягивет все элементы и ссылка становится шириной в блок, исправляем align-items flex-start */
+    align-items: flex-start;
+}
+
+.services-subtitle{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 34px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    max-width: 183px;
+    color: #4d533c;
+}
+
+.services-descr{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 26px;
+    color: rgba(33, 56, 66, 0.6);
+    margin-bottom: 56px;
+}
+
+/* Выравниваем элементы по нижнему краю при помощи column flex */
+.services-link{
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+.footer{
+    /* Настройки изобрадения как бекраунда */
+    background-image: url(../img/footer/Bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 300px;
+}
+
+.get-started{
+    background-color: #fafafa;
+    max-width: 88%;
+    padding: 70px 164px 144px 164px;
+    position: relative;
+    top: 172px;
+    box-shadow: 50px 130px 100px rgba(0, 0, 0, 0.145947);
+}
+
+.get-started-title{
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 74px;
+    color: #4d533c;
+    max-width: 822px;
+}
+
+.get-started-link span{
+    margin-top: 50px;
+    text-transform: uppercase;
+}
+
+/* Footer */
+
+.footer-top{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 182px;
+    border-bottom: 1px solid #5d6544;
+    padding-bottom: 52px;
+}
+
+.footer-contacts-text{
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 40px;
+    color: #B6C197;
+}
+
+.footer-contacts-value{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 40px;
+    color: #FFFFFF;
+}
+
+
+.footer-middle{
+    --grid-gap: 70px;
+    padding: 60px 0;
+    display: grid;
+    gap: var(--grid-gap);
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.footer-title{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 38px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 21px;
+}
+
+.footer-link{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 40px;
+    color: #B6C197;
+}
+
+.footer-text{
+    max-width: 270px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #B6C197;
+}
+
+.footer-mail{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 38px;
+    color: #FFFFFF;
+    /* отступы ссылок не работают без display inline-block */
+    display: inline-block;
+    margin-top: 23px;
+    margin-bottom: 24px;
+}
+
+.footer-column:last-child{
+    position: relative;
+}
+
+/* Создаем псевдоэлемент, рассчитываем переменной среднее между колонками и абсолютом перемещаем */
+.footer-column:last-child::before{
+    content: "";
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: calc(-1 * var(--grid-gap));
+    background-color: #5d6544;
+}
+
+.social{
+    display: flex;
+    align-items: center;
+}
+
+.social-link{
+    width: 33px;
+    height: 33px;
+    display: block;
+    background-color: #080808;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px auto;
+    border-radius: 100%;
+    opacity: 0.4;
+    /* анимация */
+    transition: opacity 0.2s ease-in-out;
+}
+
+.social-link:hover{
+    opacity: 1;
+    background-color: #ffd723;
+}
+
+.social-item:not(:last-child){
+    margin-right: 11px;
+}
+
+.social-link-fb{
+    background-image: url(../img/fb.svg);
+}
+
+.social-link-tw{
+    background-image: url(../img/tw.svg);
+}
+
+.social-link-go{
+    background-image: url(../img/G+.svg);
+}
+
+.social-link-ld{
+    background-image: url(../img/in.svg);
+}
+
+.footer-bottom{
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 0 40px 0;
+    border-top: 1px solid #5d6544;
+}
+
+.copyright{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #B5C096;
+}
